@@ -1,0 +1,87 @@
+<HTML>
+    <HEAD>
+        <SCRIPT SRC="/socket.io/socket.io.js"></SCRIPT>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+        <!-- 'nano' theme colour selection -->
+        <link rel="stylesheet" href="css/main.css">
+
+        <SCRIPT SRC="https://code.jquery.com/jquery-3.4.1.min.js" INTEGRITY="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" CROSSORIGIN="anonymous"></SCRIPT>
+        
+        <STYLE>
+            H3 > span {
+                color: red;
+            }
+        </STYLE>
+    </HEAD>
+
+<BODY>
+    <H1>Please select a colour here:</H1>  
+    <DIV class="color-picker"></DIV>
+    
+    <H3 ID="to-arduino">To Arduino: <SPAN>...</SPAN></H3>
+    <H3 ID="from-arduino">From Arduino: <SPAN>...</SPAN></H3>
+        
+    <SCRIPT>
+        $(document).ready(function() {
+            var socket = io();
+
+            function ping() {
+                $("H3#to-arduino > span").text("X");
+                socket.emit('message', 'X');
+                setTimeout(function() {
+                    $("H3#to-arduino > span").text("Y");
+                    socket.emit('message', 'Y');
+                }, 500);
+            };
+
+            socket.on('arduino', function(msg) {
+                console.log("From Arduino:" + msg);
+                $("H3#from-arduino > span").text(msg);
+            });
+
+            setInterval(ping, 2000);
+        });
+    </SCRIPT>
+
+    <SCRIPT src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></SCRIPT>
+
+    <SCRIPT>
+        //Simple example, see optional options for more configuration.
+        const pickr = Pickr.create({
+            el: '.color-picker',
+            theme: 'nano',   //'nano' selection from site
+
+            swatches: [     //visible swatches 
+                'rgba(244, 67, 54, 1)',
+                'rgba(255, 0, 181, 0.95)',
+                'rgba(156, 39, 176, 0.9)',
+                'rgba(103, 58, 183, 0.85)',
+                'rgba(63, 81, 181, 0.8)',
+                'rgba(3, 169, 244, 0.7)',
+                'rgba(4, 227, 255, 0.7)',
+                'rgba(26, 217, 33, 0.8)',
+                'rgba(205, 220, 57, 0.9)',
+                'rgba(255, 235, 59, 0.95)',
+                'rgba(255, 193, 7, 1)'
+            ],
+
+            components: {
+                //Main components
+                preview: true,
+                //opacity: true,
+                hue: true,
+
+                //Input / output Options
+                interaction: {
+                    hex: true,
+                    rgba: true,
+                    input: true, //visible input of hex or RGBA colours
+                    clear: true, 
+                    save: true
+                }
+            }
+        });
+    </SCRIPT>
+</BODY>
+
+</HTML>
