@@ -1,0 +1,23 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "Proxy from web to Arduino.",
+  "main": "proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codezoners/Proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codezoners/Proxy/issues"
+  },
+  "homepage": "https://github.com/codezoners/Proxy#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "johnny-five": "^1.4.0"
+  }
+}
