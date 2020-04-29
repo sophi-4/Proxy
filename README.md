@@ -12,6 +12,7 @@
 * npm install johnny-five
 
 Launch the server with: node proxy.js
+(If the error 'npm: command not found' arises try - brew update, brew unistall node and brew install node in proxy directory and then npm socket.io followed by other setup instructions. Should solve the issue of command not found) 
 
 # Explanation of code:
 
