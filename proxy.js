@@ -2,6 +2,7 @@
 
 const express = require('express');
 const app = express ();
+//const port = 3000;
 
 //var app = require('express')();
 
@@ -9,9 +10,9 @@ var five = require("johnny-five");
 
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-var SerialPort = require('serialport');
+var SerialPort = require('SerialPort');
 
-const port = new SerialPort("/dev/cu.usbmodem14641");
+const port = new SerialPort("/dev/cu.usbmodem14341");
 
 
 //code for the board, initializes colour when board is one    
@@ -19,29 +20,25 @@ five.Board().on('ready',function(){
     
     var led = new five.led.RGB({
         pins:{
-            blue:5
+            red:3,
+            green:5, 
+            blue:6
         }
     })
     
     led.on();
     //default led colour when led is on
-    led.color('#04C6A4');
+    //led.color('#04C6A4');
+    led.color('#FF0000');
     
     //websocket connections on 
-    io.on('connection', function(socket){
+    io.on('connection', function(socket, req){
         console.log('a browser connected'); 
-        //front end users connect changes colour of led to #04C6A4 
+        //front end users connect changes colour of led to #FF0000
         socket.on('message', function(data){
             led.color('#' + data); 
         })
     });
-
-
-//port.open(function (err) {
-//    if (err) {
-//        return console.log('Error opening port:', err.message);
-//    }
-//});
 
 
     http.listen(3000, function() {
