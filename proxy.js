@@ -17,7 +17,7 @@ const port = new SerialPort("/dev/cu.usbmodem14641");
 //code for the board, initializes colour when board is one    
 five.Board().on('ready',function(){
     
-    var led =new five.led.RGB({
+    var led = new five.led.RGB({
         pins:{
             blue:5
         }
@@ -37,11 +37,11 @@ five.Board().on('ready',function(){
     });
 
 
-port.open(function (err) {
-    if (err) {
-        return console.log('Error opening port:', err.message);
-    }
-});
+//port.open(function (err) {
+//    if (err) {
+//        return console.log('Error opening port:', err.message);
+//    }
+//});
 
 
     http.listen(3000, function() {
