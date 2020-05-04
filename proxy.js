@@ -12,13 +12,13 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var SerialPort = require('SerialPort');
 
-const port = new SerialPort("/dev/cu.usbmodem14341");
+//const port = new SerialPort("/dev/cu.usbmodem14341");
 
 
 //code for the board, initializes colour when board is one    
 five.Board().on('ready',function(){
     
-    var led = new five.led.RGB({
+    var led = new five.Led.RGB({
         pins:{
             red:3,
             green:5, 
@@ -29,7 +29,8 @@ five.Board().on('ready',function(){
     led.on();
     //default led colour when led is on
     //led.color('#04C6A4');
-    led.color('#FF0000');
+    led.color('#0000FF');
+    
     
     //websocket connections on 
     io.on('connection', function(socket, req){
