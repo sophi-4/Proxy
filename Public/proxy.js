@@ -1,20 +1,46 @@
-/* Websocket to serial proxy. */
+/* splash screen timeout */
+const splash= document.querySelector('.splash')
 
+/* event listener to the document */
+document.addEventListener('DOMContentLoaded', (e)=>{
+    setTimeout(()=>{
+       splash.classList.add('display-none'); 
+    }, 2000); /* Timeout set to 2 seconds */
+})
+
+
+//host all files in public folder
+//static = unchanging files
+app.use(express.static('public'));
+
+
+/* Websocket to serial proxy. */
 const express = require('express');
-const app = express ();
+const app = express();
 const path = require('path');
 //const port = 3000;
 
 //var app = require('express')();
 
-var five = require("johnny-five");
+var socket = require ('socket.io');
 
+var five = require("johnny-five");
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
+var io = socket(server);
 var SerialPort = require('SerialPort');
 
 //const port = new SerialPort("/dev/cu.usbmodem14341");
 
+//new connection event
+//io being the inpiut output object to sockets - call the function on - to setup a connection event
+io.sockets.on ('connection', newConnection)
+
+//socket argument places in that function
+function newConnection(socket){
+    //new socket connection to the server gets assigned an id number
+    console.log('new connection:' + socket.id);   
+}
 
 //code for the board, initializes colour when board is one
 five.Board().on('ready',function(){
@@ -30,7 +56,7 @@ five.Board().on('ready',function(){
     led.on();
     //default led colour when led is on
     //led.color('#04C6A4');
-    led.color('#0000FF');
+    led.color('#FF0000');
 
 
     //websocket connections on

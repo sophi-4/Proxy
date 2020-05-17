@@ -1,25 +1,42 @@
 <HTML>
     <HEAD>
         <SCRIPT SRC="/socket.io/socket.io.js"></SCRIPT>
+        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+        
         <!-- 'nano' theme colour selection -->
         <link rel="stylesheet" href="css/main.css">
 
         <SCRIPT SRC="https://code.jquery.com/jquery-3.4.1.min.js" INTEGRITY="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" CROSSORIGIN="anonymous"></SCRIPT>
+        
+        <SCRIPT SRC = "libraries/p5.js" type= "text/javascript"></SCRIPT>
+        
+        <!--referces the socket.io librabry through a cdn-->
+        <SCRIPT src="https://cdn.socket.io/socket.io-1.4.5.js"></SCRIPT>
+        <SCRIPT src="sketch.js" type="text/javascript"></SCRIPT>
         
         <STYLE>
             H3 > span {
                 color: red;
             }
         </STYLE>
+        <!--<TITLE>Chrome</TITLE>-->
     </HEAD>
 
 <BODY>
-    <H1>Please select a colour here:</H1>  
+    
+    <!--Load splash screen -->
+    <DIV class="splash">
+        <H1 class= "fade-in">Chrome</H1>
+    </DIV>
+    
+    
+    
+    <H2>Please select a colour here:</H2>  
     <DIV class="color-picker"></DIV>
     
-    Color: <input id='myColor' class='jscolor' value='ab2567'>
-    
+    <!--Color: <input id='myColor' class='jscolor' value='ab2567'> --> <!--video colour picker-->
+        
     <H3 ID="to-arduino">To Arduino: <SPAN>...</SPAN></H3>
     <H3 ID="from-arduino">From Arduino: <SPAN>...</SPAN></H3>
         
