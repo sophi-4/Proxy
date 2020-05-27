@@ -7,13 +7,13 @@
     height: 100vh;
     background: paleturquoise;
     z-index: 200; /* place text in front of everything */
-    color: lightseagreen /* text colour */
+    color: lightseagreen; /* text colour */
     text-align: center;
     line-height: 90vh;    
 }
 
 /* Text disappear */
-.splash.display-none{
+.splash .display-none{
     position: fixed; 
     opacity: 0;
     top: 0;
@@ -22,10 +22,10 @@
     height: 100vh;
     background: paleturquoise;
     z-index: -10; /* place text in behind everything */
-    color: lightseagreen /* text colour */
+    color: lightseagreen; /* text colour */
     text-align: center;
     line-height: 90vh; 
-    transition: all 0.5s /* smoother fade out */
+    /*transition: all 0.5s /* smoother fade out */
 }
 
 /* animation of text */
