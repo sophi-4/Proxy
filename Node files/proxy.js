@@ -1,6 +1,3 @@
-//host all files in public folder
-//static = unchanging files
-app.use(express.static('public'));
 
 
 /* Websocket to serial proxy. */
@@ -22,8 +19,11 @@ var SerialPort = require('SerialPort');
 //const port = new SerialPort("/dev/cu.usbmodem14341");
 
 //new connection event
-//io being the inpiut output object to sockets - call the function on - to setup a connection event
+//io being the input output object to sockets - call the function on - to setup a connection event
 io.sockets.on ('connection', newConnection)
+
+//host all files in public directory, static = unchanging files
+app.use(express.static('public'));
 
 //socket argument places in that function
 function newConnection(socket){

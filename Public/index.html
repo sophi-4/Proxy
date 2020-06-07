@@ -3,66 +3,58 @@
          <!--<SCRIPT SRC="/socket.io/socket.io.js"></SCRIPT>-->
         
         <!-- 'nano' theme colour selection -->
-        <link rel="stylesheet" href="style.css">
+        <LINK REL="stylesheet" href="style.css">
 
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
+         <LINK REL="stylesheet" HREF="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css" />
         
         <SCRIPT SRC="https://code.jquery.com/jquery-3.4.1.min.js" INTEGRITY="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" CROSSORIGIN="anonymous"></SCRIPT>
         
-        <SCRIPT SRC = "libraries/p5.js" type= "text/javascript"></SCRIPT>
+        <SCRIPT SRC = "p5.js" type= "text/javascript"></SCRIPT>
         
         <!--referces the socket.io librabry through a cdn-->
-        <SCRIPT src="https://cdn.socket.io/socket.io-1.4.5.js"></SCRIPT>
+        <SCRIPT SRC="https://cdn.socket.io/socket.io-1.4.5.js"></SCRIPT>
         
-        <SCRIPT src="sketch.js" type="text/javascript"></SCRIPT>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+            
+        <!--<SCRIPT SRC="sketch.js" type="text/javascript"></SCRIPT>-->   
+        <!--<SCRIPT SRC="sketch.js"></SCRIPT>-->
+            
+        <SCRIPT SRC="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></SCRIPT>
         
-        <STYLE>
+        <meta charset="utf-8" />
+        
+         <!--<STYLE>
             H3 > span {
                 color: red;
             }
-        </STYLE>
-        <TITLE>Chrome</TITLE>
+        </STYLE>-->
         
-    </HEAD>
+        <!--tab title-->
+        <TITLE>Chroma</TITLE>
+            
+</HEAD>
 
 <BODY>
     
-    <!--Load splash screen -->
-    <DIV class="splash">
-         <H1 class="fade-in">Chroma</H1>
-        <!--<H1>Chroma</H1>-->
-    </DIV>  
+    <H1>Chroma</H1>
     
-    <H2>Please select a colour here:</H2>  
+    <!--Load splash screen-->
+   <!--<DIV class="splash">
+         <H1 class="fade-in">Chroma</H1>
+    </DIV>-->
+    
+    <H2>Please select a colour here:</H2> 
+    
     <DIV class="color-picker"></DIV>
     
-    <!--Color: <input id='myColor' class='jscolor' value='ab2567'> --> <!--video colour picker-->
+    <!--<SCRIPT type= "text/jajvascript">
+      
+   Color: <input id='myColor' class='jscolor' value='ab2567'> video colour picker
         
-    <!--<H3 ID="to-arduino">To Arduino: <SPAN>...</SPAN></H3>
-    <H3 ID="from-arduino">From Arduino: <SPAN>...</SPAN></H3>
-        
-    <SCRIPT>
-        $(document).ready(function() {
-            var socket = io();
-
-            function ping() {
-                $("H3#to-arduino > span").text("X");
-                socket.emit('message', 'X');
-                setTimeout(function() {
-                    $("H3#to-arduino > span").text("Y");
-                    socket.emit('message', 'Y');
-                }, 500);
-            };
-
-            socket.on('arduino', function(msg) {
-                console.log("From Arduino:" + msg);
-                $("H3#from-arduino > span").text(msg);
-            });
-
-            setInterval(ping, 2000);
-        });
     </SCRIPT>-->
 
+    <SCRIPT SRC="sketch.js"></SCRIPT>
+    
     <SCRIPT src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></SCRIPT>
 
     <SCRIPT>
@@ -102,6 +94,10 @@
             }
         });
     </SCRIPT>
+    
+<!--<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+    </canvas>-->
+    
 </BODY>
 
 </HTML>
