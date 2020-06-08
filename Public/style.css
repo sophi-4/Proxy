@@ -1,0 +1,16 @@
+/*Splash screen*/
+<STYLE type="text/css">
+    body {
+        background-color:white;
+        text-align: center;    
+    }
+
+    #splash {
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        width:100%;
+        background-color:mediumaquamarine;
+    }
+</STYLE>

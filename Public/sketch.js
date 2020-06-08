@@ -1,15 +1,3 @@
-////Starter code
-//function setup() {
-//    createCanvas (500, 500);
-//    background(0);
-//}
-//
-//function draw() {
-//    stroke(255);
-//    ellipse(mouseX, mouseY, 60, 60);
-//    
-//}
-
 //kaleidoscope effect code
 let symmetry = 6;
 let angle = 360/symmetry;
@@ -20,7 +8,7 @@ let slider;
 let xoff = 0;
 
 function setup() {
-  createCanvas (800, 800);
+  createCanvas (600, 600);
   angleMode(DEGREES);
   //background(255);
   background(0);
@@ -78,6 +66,18 @@ function draw() {
     }        
   }
 }
+
+////Starter code
+//function setup() {
+//    createCanvas (500, 500);
+//    background(0);
+//}
+//
+//function draw() {
+//    stroke(255);
+//    ellipse(mouseX, mouseY, 60, 60);
+//    
+//}
 
 
 //var socket; //socket variable
