@@ -23,7 +23,7 @@ function setup() {
   clearButton.mousePressed(clearCanvas);
   //starts at 1 to 50- position 4 with increments of .1
   slider = createSlider (1,25,4, 0.1);
-  colorMode(HSB,255,255,255);
+  colorMode(HSB);
 }
 
 function savePattern(){
@@ -49,9 +49,12 @@ function draw() {
       // let hu = noise(xoff) * 255;
       // xoff += 0.01; //x offset change over time
 
-      let hu = map (sin(xoff), -1,1,0,255);
-      xoff += 1;
-      stroke(hu, 255, 255,100); //saturation + brightness
+      //let hu = map (sin(xoff), -1,1,0,255);
+      //xoff += 1;
+      //stroke(hu, 255, 255,100); //saturation + brightness      
+      //stroke = globalColour;
+      stroke(globalColour.h, 255, 255,100);
+        
       let angle = 360/symmetry;
       //rotate 12 times not 6
       for (let i= 0; i<symmetry; i++) {

@@ -11,7 +11,7 @@
 
         <SCRIPT SRC="https://code.jquery.com/jquery-3.4.1.min.js" INTEGRITY="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" CROSSORIGIN="anonymous"></SCRIPT>
 
-        <SCRIPT SRC = "p5.js" type= "text/javascript"></SCRIPT>
+        <!--<SCRIPT SRC = "p5.js" type= "text/javascript"></SCRIPT>-->
 
         <!--referces the socket.io librabry through a cdn-->
         <SCRIPT SRC="https://cdn.socket.io/socket.io-1.4.5.js"></SCRIPT>
@@ -109,7 +109,7 @@
             }
         });
 
-      pickr.on('save', (colour, instance) => {
+      pickr.on('save', (colour, instance) => { //save colour chosen
           console.log('save', colour, instance);
           globalColour = colour;
       });
