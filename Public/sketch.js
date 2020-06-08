@@ -1,3 +1,7 @@
+let globalColour = {
+    h: 0, s: 0, v: 0
+};
+
 //kaleidoscope effect code
 let symmetry = 6;
 let angle = 360/symmetry;
@@ -12,7 +16,7 @@ function setup() {
   angleMode(DEGREES);
   //background(255);
   background(0);
-  
+
   saveButton = createButton('save');
   saveButton.mousePressed(savePattern);
   clearButton = createButton('clear');
@@ -30,27 +34,27 @@ function clearCanvas(){
   background (0);
 }
 
-function draw() {   
-  translate(width/2, height/2);  
-  
+function draw() {
+  translate(width/2, height/2);
+
   //fixing the issue of canvas drawing when mouse is pressed outside the canvas
   if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height){
   let mx = mouseX - width/2;
   let my = mouseY - height/2;
   let pmx = pmouseX - width/2;
   let pmy = pmouseY - height/2;
-  
+
     if (mouseIsPressed) {
       //the hue value
       // let hu = noise(xoff) * 255;
       // xoff += 0.01; //x offset change over time
-      
-      let hu = map (sin(xoff), -1,1,0,255); 
+
+      let hu = map (sin(xoff), -1,1,0,255);
       xoff += 1;
       stroke(hu, 255, 255,100); //saturation + brightness
       let angle = 360/symmetry;
       //rotate 12 times not 6
-      for (let i= 0; i<symmetry; i++) {               
+      for (let i= 0; i<symmetry; i++) {
         rotate(angle);
         //speed of mouse increase line weight by speed of drawing
         //let d = dist(mx, my, pmx,pmy);
@@ -62,8 +66,8 @@ function draw() {
         scale(-1, 1);
         line(mx, my, pmx,pmy);
         pop();
-      }       
-    }        
+      }
+    }
   }
 }
 
@@ -76,7 +80,7 @@ function draw() {
 //function draw() {
 //    stroke(255);
 //    ellipse(mouseX, mouseY, 60, 60);
-//    
+//
 //}
 
 
@@ -85,7 +89,7 @@ function draw() {
 //function setup () {
 //    createCanvas (300, 300);
 //    background (51);
-//    
+//
 //    socket = io.connect('http://localhost:3000');
 //}
 //
@@ -94,6 +98,3 @@ function draw() {
 //    fill(255);
 //    ellipse (mouseX, mouseY, 60, 60);
 //}
-
-
-
