@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define BUTTON_PIN   2
-#define PIXEL_PIN    5
+#define PIXEL_PIN    6
 
 #define PIXEL_COUNT 12
 //#define PIXEL_COUNT 48
@@ -22,12 +22,11 @@ void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   //  strip.begin();
   //  strip.show(); // Initialize all pixels to 'off'
+
+  Serial.begin(9600);
 }
 
-void loop() {
-
-  //strip.clear();
-
+bool buttonHasBeenPressed() {
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN);
 
@@ -37,29 +36,66 @@ void loop() {
     delay(10);
     // Check if button is still low after debounce.
     newState = digitalRead(BUTTON_PIN);
+    oldState = newState;
+
     if (newState == LOW) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    oldState = newState;
+    return false;
+  }
+}
+
+void loop_TEST() {
+  if (buttonHasBeenPressed()) {
+    Serial.print("PRESS");
+    Serial.println();
+  }
+  
+}
+
+void loop() {
       showType++;
+
+  Serial.print("Starting new show: ");
+  Serial.print(showType);
+  Serial.println();
+  
       if (showType > 9)
         showType = 0;
+        
       startShow(showType);
-    }
-  }
-
-  // Set the last button state to the old state.
-  oldState = newState;
-
 }
 
 
 void startShow(int i) {
   switch (i) {
-    case 2: rainbow(30);
+    case 1:
+      nullDisplay();
       break;
-    case 3: rainbowCycle(30);
+      
+    case 2:
+      rainbow(30);
+      break;
+      
+    case 3:
+      rainbowCycle(30);
       break;
   }
 }
 
+void nullDisplay() {
+  while (true) {
+   Serial.println("nullDisplay"); 
+   delay(100);
+   if (buttonHasBeenPressed()) {
+      return;
+    }
+  }
+}
 
 void rainbow(uint8_t wait) {
   uint16_t i, j; //assigned integer, it is 16 bits large
@@ -73,6 +109,10 @@ void rainbow(uint8_t wait) {
     //Save the current button state for next time roiund loop:
     //oldState = showType;
     delay(100);
+    // Test button, drop out to startShow and loop if pressed.
+    if (buttonHasBeenPressed()) {
+      return;
+    }
     
   }
   for (j = 0; j < 256; j++) {
