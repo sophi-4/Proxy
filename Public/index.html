@@ -9,6 +9,13 @@
 
         <LINK REL="stylesheet" HREF="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
 
+        <LINK rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+        <!-- Required meta tags -->
+        <META charset="utf-8">
+        <META name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            
         <SCRIPT SRC="https://code.jquery.com/jquery-3.4.1.min.js" INTEGRITY="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" CROSSORIGIN="anonymous"></SCRIPT>
 
         <!--<SCRIPT SRC = "p5.js" type= "text/javascript"></SCRIPT>-->
@@ -16,7 +23,7 @@
         <!--referces the socket.io librabry through a cdn-->
         <SCRIPT SRC="https://cdn.socket.io/socket.io-1.4.5.js"></SCRIPT>
 
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></script>
+        <SCRIPT SRC="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.min.js"></SCRIPT>
 
         <!--<SCRIPT SRC="sketch.js" type="text/javascript"></SCRIPT>-->
         <!--<SCRIPT SRC="sketch.js"></SCRIPT>-->
@@ -47,77 +54,104 @@
             });
     </SCRIPT>
 
-    <DIV id="splash"><center>Chroma</center></DIV>
+    <DIV id="splash"><center><img src="chroma.jpg"/></center></DIV>
+
+    <SCRIPT SRC="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" CROSSORIGIN="anonymous"></SCRIPT>  
 
 <!--Main page-->
-    <H1>Chroma</H1>
-
-    <!--Load splash screen-->
-   <!--<DIV class="splash">
-         <H1 class="fade-in">Chroma</H1>
-    </DIV>-->
-
-    <SCRIPT SRC="sketch.js"></SCRIPT>
     
-    <H2>Please select a colour here:</H2>
+  <DIV style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+      <DIV class= "container-fluid">
+          <DIV class= "row">
+              
+              <!--column when xs 1 element in the strip 12,6,4,2,1  -->
+              <DIV class="col-xs-6 col-s-4 col-md-2 col-md-lg-1 H1"></DIV>
+           </DIV>
+              
+          <DIV class= "row" style="margin-top: 20px;"> 
+              <DIV class="col-xs-6 col-s-6 col-md-2 col-md-lg-1 H2"></DIV> 
+              
+              <DIV class="col-xs-6 col-s-6 col-md-2 col-md-lg-1 pickr "></DIV>
+              <DIV class="col-xs-6 col-s-4 col-md-2 col-md-lg-1 myChart"></DIV>
+              
+              
+                <H1>Chroma</H1>
 
-    <DIV class="color-picker"></DIV>
+                <!--Load splash screen-->
+               <!--<DIV class="splash">
+                     <H1 class="fade-in">Chroma</H1>
+                </DIV>-->
 
-    <!--<SCRIPT type= "text/jajvascript"></SCRIPT>-->
+                <H2>Please select a colour here:</H2>
+
+                <DIV class="color-picker"></DIV>
+
+                <!--<SCRIPT type= "text/jajvascript"></SCRIPT>-->
+
+                <!--Color: <input id='myColor' class='jscolor' value='ab2567'> video colour picker-->
+                <DIV class="col-md-1s col-sm-1 content">
+                  
+                <SCRIPT SRC="sketch.js"></SCRIPT>
+
+                <CANVAS id="myChart"></CANVAS>
+
+                <SCRIPT src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></SCRIPT>
+
+                <SCRIPT>
+                //Simple example, see optional options for more configuration.
+                    const pickr = Pickr.create({
+                        el: '.color-picker',
+                        theme: 'nano',   //'nano' selection from site
+
+                        swatches: [     //visible swatches
+                            'rgba(244, 67, 54, 1)',
+                            'rgba(255, 0, 181, 0.95)',
+                            'rgba(156, 39, 176, 0.9)',
+                            'rgba(103, 58, 183, 0.85)',
+                            'rgba(63, 81, 181, 0.8)',
+                            'rgba(3, 169, 244, 0.7)',
+                            'rgba(4, 227, 255, 0.7)',
+                            'rgba(26, 217, 33, 0.8)',
+                            'rgba(205, 220, 57, 0.9)',
+                            'rgba(255, 235, 59, 0.95)',
+                            'rgba(255, 193, 7, 1)'
+                        ],
+
+                        components: {
+                            //Main components
+                            preview: true,
+                            //opacity: true,
+                            hue: true,
+
+                            //Input / output Options
+                            interaction: {
+                                hex: true,
+                                rgba: true,
+                                input: true, //visible input of hex or RGBA colours
+                                clear: true,
+                                save: true
+                            }
+                        }
+                    });
+
+                  pickr.on('save', (colour, instance) => { //save colour chosen
+                      console.log('save', colour, instance);
+                      globalColour = colour;
+                  });
+                </SCRIPT>
+
+            <!--<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
+                </canvas>-->
+                </DIV>
+              </DIV>
+            </DIV>
+        </DIV>
    
-    Color: <input id='myColor' class='jscolor' value='ab2567'> video colour picker
-    
-
-    <CANVAS id="myChart" style="height: 200px; width: 300px;"></CANVAS>
-
-    <SCRIPT src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></SCRIPT>
-
-    <SCRIPT>
-    //Simple example, see optional options for more configuration.
-        const pickr = Pickr.create({
-            el: '.color-picker',
-            theme: 'nano',   //'nano' selection from site
-
-            swatches: [     //visible swatches
-                'rgba(244, 67, 54, 1)',
-                'rgba(255, 0, 181, 0.95)',
-                'rgba(156, 39, 176, 0.9)',
-                'rgba(103, 58, 183, 0.85)',
-                'rgba(63, 81, 181, 0.8)',
-                'rgba(3, 169, 244, 0.7)',
-                'rgba(4, 227, 255, 0.7)',
-                'rgba(26, 217, 33, 0.8)',
-                'rgba(205, 220, 57, 0.9)',
-                'rgba(255, 235, 59, 0.95)',
-                'rgba(255, 193, 7, 1)'
-            ],
-
-            components: {
-                //Main components
-                preview: true,
-                //opacity: true,
-                hue: true,
-
-                //Input / output Options
-                interaction: {
-                    hex: true,
-                    rgba: true,
-                    input: true, //visible input of hex or RGBA colours
-                    clear: true,
-                    save: true
-                }
-            }
-        });
-
-      pickr.on('save', (colour, instance) => { //save colour chosen
-          console.log('save', colour, instance);
-          globalColour = colour;
-      });
-    </SCRIPT>
-
-<!--<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;">
-    </canvas>-->
 
 </BODY>
-
+    <SCRIPT SRC="https://code.jquery.com/jquery-1.12.4.min.js" INTEGRITY="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" CROSSORIGIN="anonymous"></SCRIPT>
+            
+    <SCRIPT SRC="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" INTEGRITY="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" CROSSORIGIN="anonymous"></SCRIPT>
+   
+    <SCRIPT SRC="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" INTEGRITY="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" CROSSORIGIN="anonymous"></SCRIPT>
 </HTML>
