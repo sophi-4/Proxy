@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define BUTTON_PIN   2
-#define PIXEL_PIN    6
+#define PIXEL_PIN    5
 
 #define PIXEL_COUNT 12
 //#define PIXEL_COUNT 48
@@ -54,33 +54,31 @@ void loop_TEST() {
     Serial.print("PRESS");
     Serial.println();
   }
-  
 }
 
 void loop() {
-      showType++;
+  showType++;
 
   Serial.print("Starting new show: ");
   Serial.print(showType);
   Serial.println();
-  
-      if (showType > 9)
-        showType = 0;
-        
-      startShow(showType);
-}
 
+  if (showType > 3)
+    showType = 0;
+
+  startShow(showType);
+}
 
 void startShow(int i) {
   switch (i) {
     case 1:
       nullDisplay();
       break;
-      
+
     case 2:
       rainbow(30);
       break;
-      
+
     case 3:
       rainbowCycle(30);
       break;
@@ -89,9 +87,9 @@ void startShow(int i) {
 
 void nullDisplay() {
   while (true) {
-   Serial.println("nullDisplay"); 
-   delay(100);
-   if (buttonHasBeenPressed()) {
+    Serial.println("nullDisplay");
+    delay(100);
+    if (buttonHasBeenPressed()) {
       return;
     }
   }
@@ -113,15 +111,15 @@ void rainbow(uint8_t wait) {
     if (buttonHasBeenPressed()) {
       return;
     }
-    
+
   }
-  for (j = 0; j < 256; j++) {
-    for (i = 0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel((i + j) & (0, 0, 255)));
-    }
-    strip.show();
-    delay(100);
-  }
+  //  for (j = 0; j < 256; j++) {
+  //    for (i = 0; i < strip.numPixels(); i++) {
+  //      strip.setPixelColor(i, Wheel((i + j) & (0, 0, 255)));
+  //    }
+  //    strip.show();
+  //    delay(100);
+  //  }
 }
 
 
@@ -138,27 +136,26 @@ void rainbowCycle(uint8_t wait) {
     //Save the current button state for next time roiund loop:
     //oldButtonState = buttonState;
   }
-  for (j = 0; j < 256 * 5; j++) { // 5 cycles of all colors on wheel
-    for (i = 0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
-    }
-    strip.show();
-    delay(45); //length of transitions
-  }
-
+  //  for (j = 0; j < 256 * 5; j++) { // 5 cycles of all colors on wheel
+  //    for (i = 0; i < strip.numPixels(); i++) {
+  //      strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
+  //    }
+  //    strip.show();
+  //    delay(45); //length of transitions
+  //  }
 }
 
-  // The colours are a transition r - g - b - back to r.
-  //Wheel positions. Input a value 0 to 155 to get a color value.
-  uint32_t Wheel(byte WheelPos) {
-    WheelPos = 155 - WheelPos;
-    if (WheelPos < 85) {
-      return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
-    }
-    if (WheelPos < 170) {
-      WheelPos -= 85;
-      return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
-    }
-    WheelPos -= 170;
-    return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+// The colours are a transition r - g - b - back to r.
+//Wheel positions. Input a value 0 to 155 to get a color value.
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 155 - WheelPos;
+  if (WheelPos < 85) {
+    return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
   }
+  if (WheelPos < 170) {
+    WheelPos -= 85;
+    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+  WheelPos -= 170;
+  return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+}
